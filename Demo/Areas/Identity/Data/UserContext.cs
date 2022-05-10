@@ -14,6 +14,7 @@ public class UserContext : IdentityDbContext<AppUser>
     }
     public DbSet<Store> Store { get; set; }
     public DbSet<Book> Book { get; set; }
+    public DbSet<Category> Categories { get; set; }
     public DbSet<Order> Order { get; set; }
     public DbSet<OrderDetail> OrderDetail { get; set; }
     protected override void OnModelCreating(ModelBuilder builder)

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Demo.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20220420153453_BookSchema")]
-    partial class BookSchema
+    [Migration("20220507063519_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -113,7 +113,6 @@ namespace Demo.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImgUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Pages")
@@ -122,7 +121,7 @@ namespace Demo.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
-                    b.Property<int>("StoreId")
+                    b.Property<int?>("StoreId")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -352,9 +351,7 @@ namespace Demo.Migrations
                 {
                     b.HasOne("Demo.Models.Store", "Store")
                         .WithMany("Books")
-                        .HasForeignKey("StoreId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("StoreId");
 
                     b.Navigation("Store");
                 });
